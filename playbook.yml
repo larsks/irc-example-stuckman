@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - template:
+        src: ifcfg.j2
+        dest: ifcfg-{{ item }}
+      loop: "{{ ansible_interfaces }}"

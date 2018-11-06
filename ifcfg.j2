@@ -1,0 +1,8 @@
+{% set device = item.replace('-', '_') -%}
+{% set iface =  hostvars[inventory_hostname]['ansible_' +  device] -%}
+DEVICE={{ device }}
+
+{% if 'ipv4' in iface %}
+IPADDRESS = {{ hostvars[inventory_hostname]['ansible_' +  device].ipv4.address }}
+NETMASK = {{ hostvars[inventory_hostname]['ansible_' +  device].ipv4.netmask }}
+{% endif %}
